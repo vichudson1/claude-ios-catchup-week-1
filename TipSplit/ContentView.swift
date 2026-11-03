@@ -1,5 +1,4 @@
 import SwiftUI
-import Playgrounds
 
 struct ContentView: View {
     
@@ -19,7 +18,7 @@ struct ContentView: View {
     }
     
     private var bill: Double {
-        (try? Double(billText, format: .number)) ?? 0
+        max(0, (try? Double(billText, format: .number)) ?? 0)
     }
     
     private var tip: Double {
@@ -51,6 +50,7 @@ struct ContentView: View {
                     }
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 8)
+                    .accessibilityElement(children: .combine)
                 }
                 
                 Section("Bill") {
@@ -101,6 +101,3 @@ struct ContentView: View {
     ContentView()
 }
 
-#Playground {
-    _ = 1 + 2
-}
